@@ -19,9 +19,9 @@ import static com.example.JMSDemo.constants.Constants.*;
 @Service
 public class JmsProducer {
 
-    private JmsTemplate jmsTemplate;
-    private Queue queue;
-    private ObjectMapperUtility objectMapperUtility;
+    private final JmsTemplate jmsTemplate;
+    private final Queue queue;
+    private final ObjectMapperUtility objectMapperUtility;
 
     @Autowired
     public JmsProducer(JmsTemplate jmsTemplate, Queue queue, ObjectMapperUtility objectMapperUtility){
