@@ -13,8 +13,12 @@ import static com.example.JMSDemo.constants.Constants.*;
 @Component
 public class ObjectMapperUtility {
 
-    @Autowired
     ObjectMapper objectMapper;
+
+    @Autowired
+    public  ObjectMapperUtility(ObjectMapper objectMapper){
+        this.objectMapper = objectMapper;
+    }
 
     public String getGiftCardObjectAsString(GiftCard giftCard){
         String methodName = "getGiftCardObjectAsString()" + DELIMITER;

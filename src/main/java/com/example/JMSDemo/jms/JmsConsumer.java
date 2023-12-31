@@ -14,10 +14,14 @@ import static com.example.JMSDemo.constants.Constants.*;
 @Component
 public class JmsConsumer {
 
+    private final GiftCardService giftCardService;
+    private final ObjectMapperUtility objectMapperUtility;
+
     @Autowired
-    private GiftCardService giftCardService;
-    @Autowired
-    private ObjectMapperUtility objectMapperUtility;
+    public JmsConsumer(GiftCardService giftCardService, ObjectMapperUtility objectMapperUtility){
+        this.giftCardService = giftCardService;
+        this.objectMapperUtility = objectMapperUtility;
+    }
 
     @JmsListener(destination = "giftcard.queue")
     public void receive(String giftCardAsString){

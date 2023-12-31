@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/giftcards")
 public class GiftCardController {
-    @Autowired
-    private GiftCardService giftCardService;
+
+    private final GiftCardService giftCardService;
+    private final JmsProducer jmsProducer;
 
     @Autowired
-    private JmsProducer jmsProducer;
+    public GiftCardController(GiftCardService giftCardService, JmsProducer jmsProducer){
+        this.giftCardService = giftCardService;
+        this.jmsProducer = jmsProducer;
+    }
 
     @PostMapping("/reserve/{id}")
     public ResponseEntity<String> reserveGiftCard(@PathVariable String id){

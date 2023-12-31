@@ -2,6 +2,7 @@ package com.example.JMSDemo.jms;
 
 import com.example.JMSDemo.Utility.ObjectMapperUtility;
 import com.example.JMSDemo.model.GiftCard;
+import com.example.JMSDemo.service.GiftCardService;
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.Queue;
@@ -17,12 +18,17 @@ import static com.example.JMSDemo.constants.Constants.*;
 @Slf4j
 @Service
 public class JmsProducer {
-    @Autowired
+
     private JmsTemplate jmsTemplate;
-    @Autowired
     private Queue queue;
-    @Autowired
     private ObjectMapperUtility objectMapperUtility;
+
+    @Autowired
+    public JmsProducer(JmsTemplate jmsTemplate, Queue queue, ObjectMapperUtility objectMapperUtility){
+        this.jmsTemplate = jmsTemplate;
+        this.queue = queue;
+        this.objectMapperUtility = objectMapperUtility;
+    }
 
     public void send(GiftCard giftCard){
         String methodName = "send()" + DELIMITER;

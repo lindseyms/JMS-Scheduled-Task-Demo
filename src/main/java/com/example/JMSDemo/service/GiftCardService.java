@@ -2,8 +2,6 @@ package com.example.JMSDemo.service;
 
 import com.example.JMSDemo.Utility.ObjectMapperUtility;
 import com.example.JMSDemo.model.GiftCard;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +15,15 @@ import static com.example.JMSDemo.constants.Constants.*;
 @Slf4j
 @Service
 public class GiftCardService {
-    private Map<String, GiftCard> giftCardMap = new ConcurrentHashMap<>();
+    private final Map<String, GiftCard> giftCardMap;
+
+    private final ObjectMapperUtility objectMapperUtility;
 
     @Autowired
-    private ObjectMapperUtility objectMapperUtility;
+    public GiftCardService(ObjectMapperUtility objectMapperUtility){
+        this.objectMapperUtility = objectMapperUtility;
+        this.giftCardMap = new ConcurrentHashMap<>();
+    }
 
     //Method to reserve a gift card
     public GiftCard reserveGiftCard(String id){
