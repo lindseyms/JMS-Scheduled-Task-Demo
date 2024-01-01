@@ -43,10 +43,10 @@ public class GiftCardController {
         }
 
         log.debug("{}Gift card with giftCardId={} is NOT already reserved. Reserving gift card...", methodName, id);
-        GiftCard giftCard = giftCardService.reserveGiftCard(id);
+        String giftCardAsString = giftCardService.reserveGiftCard(id);
 
         log.info("{}Sending gift card with id={} to JMS...", methodName, id);
-        jmsProducer.send(giftCard);
+        jmsProducer.send(giftCardAsString);
 
         return ResponseEntity.ok("Gift Card reserved");
     }

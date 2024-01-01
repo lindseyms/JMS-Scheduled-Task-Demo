@@ -26,7 +26,7 @@ public class GiftCardService {
     }
 
     //Method to reserve a gift card
-    public GiftCard reserveGiftCard(String id){
+    public String reserveGiftCard(String id){
         String methodName = "reserveGiftCard()" + DELIMITER;
         log.info("{}{}", methodName, ENTER);
 
@@ -38,7 +38,7 @@ public class GiftCardService {
         log.info("{}Added GiftCard object to giftCardMap{}{}{}", methodName, DELIMITER, GIFTCARD_OBJECT_AS_STRING, giftCardAsString);
 
         log.info("{}{}{}{}", methodName, EXIT_WITH, GIFTCARD_OBJECT_AS_STRING, giftCardAsString);
-        return giftCard;
+        return giftCardAsString;
     }
 
     //Method to release/unreserve a gift card

@@ -30,22 +30,20 @@ public class JmsProducer {
         this.objectMapperUtility = objectMapperUtility;
     }
 
-    public void send(GiftCard giftCard){
+    public void send(String giftCardAsString){
         String methodName = "send()" + DELIMITER;
         log.info("{}{}", methodName, ENTER);
-
-        String giftCardObjectAsString = objectMapperUtility.getGiftCardObjectAsString(giftCard);
 
         jmsTemplate.send(queue, new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
-                Message message = session.createTextMessage(giftCardObjectAsString);
+                Message message = session.createTextMessage(giftCardAsString);
                 // Set delay for 10 minutes (600,000 milliseconds)
                 message.setLongProperty("AMQ_SCHEDULED_DELAY", 30000);
                 return message;
             }
         });
 
-        log.info("{}Sent {}{}{}{}", methodName, GIFTCARD_OBJECT_AS_STRING, giftCardObjectAsString, DELIMITER, EXIT);
+        log.info("{}Sent {}{}{}{}", methodName, GIFTCARD_OBJECT_AS_STRING, giftCardAsString, DELIMITER, EXIT);
     }
 }
