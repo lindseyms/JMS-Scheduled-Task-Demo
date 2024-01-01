@@ -13,7 +13,7 @@ import static com.example.JMSDemo.constants.Constants.*;
 @Component
 public class ObjectMapperUtility {
 
-    ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     @Autowired
     public  ObjectMapperUtility(ObjectMapper objectMapper){
